@@ -77,7 +77,10 @@ class Booking(webdriver.Chrome): # inherit from webdriver.Chrome to use its meth
     # Instantiate another class since the file got long
     def apply_filtrations(self):
         filtration = BookingFiltration(driver=self) # pass self object (Driver) to class and instantiate its Object
-        filtration.apply_star_rating(star_value=5)
+        filtration.apply_star_rating(3, 4, 5)
+
+        filtration.sort_price_lowest_first()
+
 
 
 
