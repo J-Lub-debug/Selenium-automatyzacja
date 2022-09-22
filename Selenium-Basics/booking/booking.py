@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import booking.constants as const
 from booking.booking_filtration import BookingFiltration
-
-
+from booking.booking_report import BookingReport
+from prettytable import PrettyTable
 
 class Booking(webdriver.Chrome): # inherit from webdriver.Chrome to use its methods
     # Constructor it's going to run immediately when we instantiate object of this class
@@ -31,11 +31,12 @@ class Booking(webdriver.Chrome): # inherit from webdriver.Chrome to use its meth
         selected_currency_element.click()
 
     def select_place_to_go(self, place_to_go):
-        search_field = self.find_element(By.ID, 'ss')
+        search_field = self.find_element(By.CSS_SELECTOR, 'input[name="ss"]')
         search_field.clear()
         search_field.send_keys(place_to_go)
 
         first_result = self.find_element(By.CSS_SELECTOR, 'li[data-i="0"]')
+        #first_result = self.find_element(By.CSS_SELECTOR, 'div[tabindex="-1"]')
         first_result.click()
 
     # It only accepts dates from current Month/Next month in 'yyyy-mm-dd' format
@@ -80,6 +81,17 @@ class Booking(webdriver.Chrome): # inherit from webdriver.Chrome to use its meth
         filtration.apply_star_rating(3, 4, 5)
 
         filtration.sort_price_lowest_first()
+
+    def report_results(self):
+        hotel_boxes = self.find_element(By.CLASS_NAME, 'd4924c9e74')
+
+        report = BookingReport(hotel_boxes)
+        table = PrettyTable(
+            field_names=["Hotel Name", "Hotel Price", "Hotel Score" ]
+        )
+        table.add_rows(report.pull_deal_box_attributes())
+        print(table)
+
 
 
 

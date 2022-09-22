@@ -8,4 +8,6 @@ with Booking() as bot:  # context manager
     bot.select_adults(10)
     bot.click_search()
     bot.apply_filtrations()
+    bot.refresh() #A workaround to let our bot to grab the data properly
+    bot.report_results()
     # __exit__ method gets called here after Python exits the Context "with" indent

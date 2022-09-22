@@ -1,12 +1,12 @@
 # This file will include a class with instance methods.
 # That will be responsible to interact with our website.
-# After we have some results, to apply filtrations.
+# After we have some results, to apply filtration.
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-from selenium.webdriver.remote.webdriver import WebDriver #req for autocompletion
+from selenium.webdriver.remote.webdriver import WebDriver  # req for autocompletion
 
 # No autocompletion due to not known type before the actual passing takes place
 class BookingFiltration:
