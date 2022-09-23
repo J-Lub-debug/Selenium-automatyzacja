@@ -23,5 +23,7 @@ Known errors:
 To do:
 - Expand date selection range
 
+
 Example results:
+
 ![Screenshot](https://github.com/J-Lub-debug/Selenium-automatyzacja/blob/master/Selenium-Basics/results/resultTable.png)
